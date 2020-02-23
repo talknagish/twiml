@@ -516,7 +516,7 @@ type Gather struct {
 	PartialResultCallback string   `xml:"partialResultCallback,attr,omitempty"`
 	Language              string   `xml:"language,attr,omitempty"`
 	ProfanityFilter       bool     `xml:"profanityFilter,attr,omitempty"`
-	SpeechTimeout         int      `xml:"speechTimeout,attr,omitempty"`
+	SpeechTimeout         string   `xml:"speechTimeout,attr,omitempty"`
 	Children              []Markup `valid:"-"`
 }
 
