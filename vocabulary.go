@@ -560,3 +560,125 @@ func (g *Gather) Add(ml ...Markup) {
 func (g *Gather) Type() string {
 	return "Gather"
 }
+
+// Start TWiml for Streaming
+type Start struct {
+	XMLName  xml.Name `xml:"Start"`
+	Children []Markup `valid:"-"`
+}
+
+// Validate returns an error if the TwiML is constructed improperly
+func (s *Start) Validate() error {
+	var errs []error
+
+	for _, s := range s.Children {
+		switch t := s.Type(); t {
+		default:
+			return fmt.Errorf("Not a valid verb as child of Gather: '%T'", s)
+		case "Stream":
+			if childErr := s.Validate(); childErr != nil {
+				errs = append(errs, childErr)
+			}
+		}
+	}
+	if len(errs) > 0 {
+		return ValidationError{errs}
+	}
+	return nil
+}
+
+// Type returns the XML name of the verb
+func (s *Start) Type() string {
+	return "Start"
+}
+
+// Add adds noun structs to a Start response as children
+func (s *Start) Add(ml ...Markup) {
+	for _, m := range ml {
+		s.Children = append(s.Children, m)
+	}
+	return
+}
+
+// Stop TWiml for Streaming
+type Stop struct {
+	XMLName  xml.Name `xml:"Stop"`
+	Children []Markup `valid:"-"`
+}
+
+// Validate returns an error if the TwiML is constructed improperly
+func (s *Stop) Validate() error {
+	var errs []error
+
+	for _, s := range s.Children {
+		switch t := s.Type(); t {
+		default:
+			return fmt.Errorf("Not a valid verb as child of Gather: '%T'", s)
+		case "Stream":
+			if childErr := s.Validate(); childErr != nil {
+				errs = append(errs, childErr)
+			}
+		}
+	}
+	if len(errs) > 0 {
+		return ValidationError{errs}
+	}
+	return nil
+}
+
+// Type returns the XML name of the verb
+func (s *Stop) Type() string {
+	return "Stop"
+}
+
+// Add adds noun structs to a Stop response as children
+func (s *Stop) Add(ml ...Markup) {
+	for _, m := range ml {
+		s.Children = append(s.Children, m)
+	}
+	return
+}
+
+// Stream TWiml for Streaming
+type Stream struct {
+	XMLName              xml.Name `xml:"Stream"`
+	Name                 string   `xml:"name,attr"`
+	URL                  string   `xml:"url,attr"`
+	Track                string   `xml:"track,attr,omitempty"`
+	StatusCallback       string   `xml:"statusCallback,attr,omitempty"`
+	StatusCallbackMethod string   `xml:"statusCallbackMethod,attr,omitempty"`
+	Children             []Markup `valid:"-"`
+}
+
+// Validate returns an error if the TwiML is constructed improperly
+func (s *Stream) Validate() error {
+	var errs []error
+
+	for _, s := range s.Children {
+		switch t := s.Type(); t {
+		default:
+			return fmt.Errorf("Not a valid verb as child of Gather: '%T'", s)
+		case "Parameter":
+			if childErr := s.Validate(); childErr != nil {
+				errs = append(errs, childErr)
+			}
+		}
+	}
+	if len(errs) > 0 {
+		return ValidationError{errs}
+	}
+	return nil
+}
+
+// Type returns the XML name of the verb
+func (s *Stream) Type() string {
+	return "Stream"
+}
+
+// Add adds noun structs to a Stream response as children
+func (s *Stream) Add(ml ...Markup) {
+	for _, m := range ml {
+		s.Children = append(s.Children, m)
+	}
+	return
+}
