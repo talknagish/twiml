@@ -682,3 +682,42 @@ func (s *Stream) Add(ml ...Markup) {
 	}
 	return
 }
+
+// Connect TWiml for Streaming
+type Connect struct {
+	XMLName  xml.Name `xml:"Connect"`
+	Children []Markup `valid:"-"`
+}
+
+// Validate returns an error if the TwiML is constructed improperly
+func (s *Connect) Validate() error {
+	var errs []error
+
+	for _, s := range s.Children {
+		switch t := s.Type(); t {
+		default:
+			return fmt.Errorf("Not a valid verb as child of Gather: '%T'", s)
+		case "Connect":
+			if childErr := s.Validate(); childErr != nil {
+				errs = append(errs, childErr)
+			}
+		}
+	}
+	if len(errs) > 0 {
+		return ValidationError{errs}
+	}
+	return nil
+}
+
+// Type returns the XML name of the verb
+func (s *Connect) Type() string {
+	return "Connect"
+}
+
+// Add adds noun structs to a Connect response as children
+func (s *Connect) Add(ml ...Markup) {
+	for _, m := range ml {
+		s.Children = append(s.Children, m)
+	}
+	return
+}
