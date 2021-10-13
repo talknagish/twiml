@@ -86,7 +86,7 @@ type Conference struct {
 	Beep                          string   `xml:"beep,attr,omitempty"`
 	StartConferenceOnEnter        bool     `xml:"startConferenceOnEnter,attr,omitempty"`
 	EndConferenceOnExit           bool     `xml:"endConferenceOnExit,attr,omitempty"`
-	WaitURL                       string   `xml:"waitUrl,attr,omitempty"`
+	WaitURL                       string   `xml:"waitUrl,attr"`
 	WaitMethod                    string   `xml:"waitMethod,attr,omitempty"`
 	MaxParticipants               int      `xml:"maxParticipants,attr,omitempty"`
 	Record                        string   `xml:"record,attr,omitempty"`
