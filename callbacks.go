@@ -1,10 +1,25 @@
 package twiml
 
-type TwilioAddons struct {
-	Status  string      `json:"status"`
-	Message interface{} `json:"message"`
-	Code    interface{} `json:"code"`
-	Results interface{} `json:"results"`
+// type TwilioAddons struct {
+// 	Status  string      `json:"status"`
+// 	Message interface{} `json:"message"`
+// 	Code    interface{} `json:"code"`
+// 	Results interface{} `json:"results"`
+// }
+
+type AddonsResults struct {
+	Status  string                 `json:"status"`
+	Message string                 `json:"message"`
+	Code    int                    `json:"code"`
+	Results map[string]AddonResult `json:"results"`
+}
+
+type AddonResult struct {
+	RequestSid string                 `json:"request_sid"`
+	Status     string                 `json:"status"`
+	Message    string                 `json:"message"`
+	Code       int                    `json:"code"`
+	Result     map[string]interface{} `json:"result"`
 }
 
 // VoiceRequest represents the standard request format for callbacks received from the Twilio API.  This struct is
@@ -27,7 +42,7 @@ type VoiceRequest struct {
 	ToState       string
 	ToZip         string
 	ToCountry     string
-	AddOns        TwilioAddons `schema:"AddOns"`
+	AddOns        AddonsResults `schema:"AddOns"`
 }
 
 // DialActionRequest represents a request as a result of declaring an `action` URL on the Dial verb
