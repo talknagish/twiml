@@ -1,12 +1,5 @@
 package twiml
 
-// type TwilioAddons struct {
-// 	Status  string      `json:"status"`
-// 	Message interface{} `json:"message"`
-// 	Code    interface{} `json:"code"`
-// 	Results interface{} `json:"results"`
-// }
-
 type AddonsResults struct {
 	Status  string                 `json:"status"`
 	Message string                 `json:"message"`
