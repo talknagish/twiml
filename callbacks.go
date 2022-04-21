@@ -11,7 +11,7 @@ type AddonResult struct {
 	RequestSid string                 `json:"request_sid"`
 	Status     string                 `json:"status"`
 	Message    string                 `json:"message"`
-	Code       int                    `json:"code"`
+	Code       *int                   `json:"code"`
 	Result     map[string]interface{} `json:"result"`
 }
 
