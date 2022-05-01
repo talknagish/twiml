@@ -36,6 +36,9 @@ type VoiceRequest struct {
 	ToZip         string
 	ToCountry     string
 	AddOns        AddonsResults `schema:"AddOns"`
+
+	// The following field is only present in conference callbacks
+	FriendlyName string
 }
 
 // DialActionRequest represents a request as a result of declaring an `action` URL on the Dial verb
