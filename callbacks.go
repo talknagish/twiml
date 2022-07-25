@@ -18,24 +18,30 @@ type AddonResult struct {
 // VoiceRequest represents the standard request format for callbacks received from the Twilio API.  This struct is
 // embedded in other callback requests that return this common data format.
 type VoiceRequest struct {
-	CallSid       string
-	AccountSid    string
-	From          string
-	To            string
-	CallStatus    string
-	APIVersion    string `schema:"ApiVersion"`
-	Direction     string
-	ForwardedFrom string
-	CallerName    string
-	FromCity      string
-	FromState     string
-	FromZip       string
-	FromCountry   string
-	ToCity        string
-	ToState       string
-	ToZip         string
-	ToCountry     string
-	AddOns        AddonsResults `schema:"AddOns"`
+	CallSid           string
+	AccountSid        string
+	From              string
+	To                string
+	CallStatus        string
+	APIVersion        string `schema:"ApiVersion"`
+	Direction         string
+	ForwardedFrom     string
+	CallerName        string
+	FromCity          string
+	FromState         string
+	FromZip           string
+	FromCountry       string
+	ToCity            string
+	ToState           string
+	ToZip             string
+	ToCountry         string
+	RecordingSid      string
+	RecordingURL      string
+	RecordingDuration string
+	TranscriptionText string
+	TranscriptionSid  string
+	TranscriptionUrl  string
+	AddOns            AddonsResults `schema:"AddOns"`
 }
 
 // DialActionRequest represents a request as a result of declaring an `action` URL on the Dial verb
