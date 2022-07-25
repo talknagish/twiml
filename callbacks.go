@@ -11,7 +11,7 @@ type AddonResult struct {
 	RequestSid string                 `json:"request_sid"`
 	Status     string                 `json:"status"`
 	Message    string                 `json:"message"`
-	Code       int                    `json:"code"`
+	Code       *int                   `json:"code"`
 	Result     map[string]interface{} `json:"result"`
 }
 
@@ -42,6 +42,9 @@ type VoiceRequest struct {
 	TranscriptionSid  string
 	TranscriptionUrl  string
 	AddOns            AddonsResults `schema:"AddOns"`
+
+	// The following field is only present in conference callbacks
+	FriendlyName string
 }
 
 // DialActionRequest represents a request as a result of declaring an `action` URL on the Dial verb
