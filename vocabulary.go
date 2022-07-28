@@ -381,7 +381,7 @@ type Record struct {
 	Timeout                       int      `xml:"timeout,attr,omitempty"`
 	FinishOnKey                   string   `xml:"finishOnKey,attr,omitempty"`
 	MaxLength                     int      `xml:"maxLength,attr,omitempty"`
-	PlayBeep                      bool     `xml:"playBeep,attr,omitempty"`
+	PlayBeep                      string   `xml:"playBeep,attr,omitempty"`
 	Trim                          string   `xml:"trim,attr,omitempty"`
 	RecordingStatusCallback       string   `xml:"recordingStatusCallback,attr,omitempty"`
 	RecordingStatusCallbackMethod string   `xml:"recordingStatusCallbackMethod,attr,omitempty"`
